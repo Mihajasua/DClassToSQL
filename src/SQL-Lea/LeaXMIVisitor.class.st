@@ -55,6 +55,9 @@ LeaXMIVisitor >> visitClassPackage: anXMLElement [
 
 	| modelClass |
 	modelClass := model newClassNamed: (anXMLElement attributeAt: #nameOfClass).
+	context ifNotNil: [ 
+		context top addChildEntity: modelClass
+	].
 	context push: modelClass.
 		
 	self visitChildrenNodes: anXMLElement.
@@ -126,8 +129,13 @@ LeaXMIVisitor >> visitOwnedOperation: anXMLElement [
 { #category : #'visiting - MD' }
 LeaXMIVisitor >> visitOwnedPackage: anXMLElement [ 
 
+	| package |
+	package := model newPackageNamed: (anXMLElement attributeAt: #nameOfPackage).
+	context push: package.
+		
 	self visitChildrenNodes: anXMLElement.
 
+	context pop.
 ]
 
 { #category : #'visiting - MD' }
