@@ -18,7 +18,7 @@ LeaXMIImporter >> import: filename [
 { #category : #api }
 LeaXMIImporter >> importString: aString [
 	|visitor |
-	model := FamixJavaModel new.
+	model := FamixPraxemModel  new.
 	visitor := LeaXMIVisitor new.
 	visitor model: model.
 	(XMLDOMParser parse: aString)

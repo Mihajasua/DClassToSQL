@@ -48,6 +48,7 @@ FamixPraxemGenerator >> defineHierarchy [
 
 	super defineHierarchy.
 	
+	class --|> #TPackageable.
 	class --|> #TClass.
 	method --|> #TMethod.
 	attribute --|> #TAttribute.

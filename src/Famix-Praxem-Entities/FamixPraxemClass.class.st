@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixPraxemClass,
 	#superclass : #FamixPraxemEntity,
-	#traits : 'FamixTClass',
-	#classTraits : 'FamixTClass classTrait',
+	#traits : 'FamixTClass + FamixTPackageable',
+	#classTraits : 'FamixTClass classTrait + FamixTPackageable classTrait',
 	#category : #'Famix-Praxem-Entities-Entities'
 }
 
