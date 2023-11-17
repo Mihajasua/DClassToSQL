@@ -42,6 +42,14 @@ LeaSQLGenerator >> generateTable: aTable on: aStream [
 				<< ',' ;
 				cr
 		].
+	
+		aStream 
+			<< ',';
+			cr;
+			<< 'PRIMARY KEY (';
+			<< aTable columns first name;
+			<< ')'.
+			
 
 	aStream
 		cr ;
