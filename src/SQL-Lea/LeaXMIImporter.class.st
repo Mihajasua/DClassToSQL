@@ -19,10 +19,23 @@ LeaXMIImporter >> import: filename [
 LeaXMIImporter >> importString: aString [
 	|visitor |
 	model := FamixPraxemModel  new.
+	
+		
+	model newClassNamed: 'Date'.
+	model newClassNamed: 'Texte'.
+	model newClassNamed: 'Boolean'.
+	model newClassNamed: 'Numerique'.
+	
+
 	visitor := LeaXMIVisitor new.
+			
 	visitor model: model.
+	
 	(XMLDOMParser parse: aString)
-		acceptNodeVisitor: visitor.
+		acceptNodeVisitor: visitor.	
+	
+	(LeaPraxemResolver new) checkAttributeType: model.
+	
 	^visitor model
 
 ]

@@ -54,4 +54,6 @@ LeaSQLGenerator >> generateType: aType on: aStream [
 
 	aStream
 		<< aType name
+
+
 ]

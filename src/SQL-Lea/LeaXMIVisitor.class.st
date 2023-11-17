@@ -18,8 +18,7 @@ LeaXMIVisitor >> initialize [
 
 { #category : #accessing }
 LeaXMIVisitor >> model [
-
-	^ model
+	  ^ model
 ]
 
 { #category : #accessing }
@@ -38,7 +37,7 @@ LeaXMIVisitor >> visitAttributType: anXMLElement [
 
 	| selector |
 	selector := 'visit' , (anXMLElement attributeAt: 'nameOfType') capitalized , ':'.
-		self perform: selector asSymbol with: anXMLElement
+	self perform: selector asSymbol with: anXMLElement
 
 ]
 
@@ -161,11 +160,16 @@ LeaXMIVisitor >> visitStringNode: anXMLString [
 LeaXMIVisitor >> visitType_Symbol: anXMLElement [ 
 
 	| parentEntity |
-	parentEntity := context top.
 
+	parentEntity := context top.
+	
 	parentEntity
 		attributeAt: #attributeType
 		put: (anXMLElement attributeAt: 'nameOfTypeClass')
+		
+
+		
+	
 ]
 
 { #category : #'visiting - MD' }
