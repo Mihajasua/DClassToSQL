@@ -1,8 +1,10 @@
 Class {
 	#name : #PrxmToFamixSQL,
-	#superclass : #Object,
+	#superclass : #PrxmAbstractVisitor,
 	#instVars : [
-		'builder'
+		'builder',
+		'model',
+		'context'
 	],
 	#category : #'Praxem-To-SQL'
 }
@@ -55,8 +57,22 @@ PrxmToFamixSQL >> generatePrimaryKeyID: tableName [
 PrxmToFamixSQL >> initialize [
 
 	super initialize.
-	
-	builder := PrxmBuildFamixSQLEntities new
+
+	model := FamixSQLModel new.
+	builder := PrxmBuildFamixSQLEntities new.
+	context := Stack new
+]
+
+{ #category : #accessing }
+PrxmToFamixSQL >> model [
+
+	^ model
+]
+
+{ #category : #accessing }
+PrxmToFamixSQL >> model: anObject [
+
+	model := anObject
 ]
 
 { #category : #'as yet unclassified' }
@@ -77,4 +93,36 @@ PrxmToFamixSQL >> sqlType: type [
 
 
 	
+]
+
+{ #category : #visiting }
+PrxmToFamixSQL >> visitPraxemAttribute: aPraxemAttribute [
+
+	| aTable column |
+	aTable := context top.
+
+	column := builder createColum: aPraxemAttribute name type: nil.
+	model add: column.
+	aTable addColumn: column
+
+]
+
+{ #category : #visiting }
+PrxmToFamixSQL >> visitPraxemClass: aPraxemClass [
+
+	| aTable |
+	aTable := builder createTable: aPraxemClass name.
+	model add: aTable.
+	context push: aTable.
+	
+	aTable addColumn: (builder
+		 createColum: (self generatePrimaryKeyID: aPraxemClass name)
+		 type: 'int').
+
+	super visitPraxemClass: aPraxemClass.
+
+	self createForeignKeys: aTable from: aPraxemClass.
+
+
+	context pop
 ]
