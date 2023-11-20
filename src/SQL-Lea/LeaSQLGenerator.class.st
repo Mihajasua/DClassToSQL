@@ -11,6 +11,7 @@ LeaSQLGenerator >> generateColumn: aColumn on: aStream [
 		tab ;
 		<< aColumn name ;
 		space.
+	
 
 	self
 		generateType: aColumn typeReferences first type
@@ -42,14 +43,6 @@ LeaSQLGenerator >> generateTable: aTable on: aStream [
 				<< ',' ;
 				cr
 		].
-	
-		aStream 
-			<< ',';
-			cr;
-			<< 'PRIMARY KEY (';
-			<< aTable columns first name;
-			<< ')'.
-			
 
 	aStream
 		cr ;
@@ -59,6 +52,7 @@ LeaSQLGenerator >> generateTable: aTable on: aStream [
 
 { #category : #'as yet unclassified' }
 LeaSQLGenerator >> generateType: aType on: aStream [
+
 
 	aStream
 		<< aType name
