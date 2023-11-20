@@ -1,15 +1,15 @@
 Class {
-	#name : #LeaXMIVisitor,
+	#name : #PrxmXMIVisitor,
 	#superclass : #Object,
 	#instVars : [
 		'model',
 		'context'
 	],
-	#category : #'SQL-Lea'
+	#category : #'Praxem-Import'
 }
 
 { #category : #initialization }
-LeaXMIVisitor >> initialize [ 
+PrxmXMIVisitor >> initialize [ 
 
 	super initialize.
 
@@ -17,23 +17,23 @@ LeaXMIVisitor >> initialize [
 ]
 
 { #category : #accessing }
-LeaXMIVisitor >> model [
+PrxmXMIVisitor >> model [
 	  ^ model
 ]
 
 { #category : #accessing }
-LeaXMIVisitor >> model: anObject [
+PrxmXMIVisitor >> model: anObject [
 
 	model := anObject
 ]
 
 { #category : #'visiting - MD' }
-LeaXMIVisitor >> visitAssociationEnd: aXMLElement [ 
+PrxmXMIVisitor >> visitAssociationEnd: aXMLElement [ 
 
 ]
 
 { #category : #'visiting - MD' }
-LeaXMIVisitor >> visitAttributType: anXMLElement [ 
+PrxmXMIVisitor >> visitAttributType: anXMLElement [ 
 
 	| selector |
 	selector := 'visit' , (anXMLElement attributeAt: 'nameOfType') capitalized , ':'.
@@ -42,7 +42,7 @@ LeaXMIVisitor >> visitAttributType: anXMLElement [
 ]
 
 { #category : #'visiting - XML' }
-LeaXMIVisitor >> visitChildrenNodes: anXMLNode [
+PrxmXMIVisitor >> visitChildrenNodes: anXMLNode [
 	
 	anXMLNode nodes do: [ :child |
 		child acceptNodeVisitor: self
@@ -50,7 +50,7 @@ LeaXMIVisitor >> visitChildrenNodes: anXMLNode [
 ]
 
 { #category : #'visiting - MD' }
-LeaXMIVisitor >> visitClassPackage: anXMLElement [
+PrxmXMIVisitor >> visitClassPackage: anXMLElement [
 
 	| modelClass |
 	modelClass := model newClassNamed: (anXMLElement attributeAt: #nameOfClass).
@@ -67,19 +67,19 @@ LeaXMIVisitor >> visitClassPackage: anXMLElement [
 ]
 
 { #category : #'visiting - MD' }
-LeaXMIVisitor >> visitClassRoot: anXMLElement [
+PrxmXMIVisitor >> visitClassRoot: anXMLElement [
 
 ]
 
 { #category : #'visiting - XML' }
-LeaXMIVisitor >> visitDocument: anXMLDocument [
+PrxmXMIVisitor >> visitDocument: anXMLDocument [
 
 	self visitChildrenNodes: anXMLDocument.
 	^model
 ]
 
 { #category : #'visiting - XML' }
-LeaXMIVisitor >> visitElement: anXMLElement [
+PrxmXMIVisitor >> visitElement: anXMLElement [
 	
 	| selector |
 	(anXMLElement name = 'MMdclasse:DiagramRoot')
@@ -92,12 +92,12 @@ LeaXMIVisitor >> visitElement: anXMLElement [
 ]
 
 { #category : #'visiting - MD' }
-LeaXMIVisitor >> visitOwnedAssociation: aXMLElement [ 
+PrxmXMIVisitor >> visitOwnedAssociation: aXMLElement [ 
 
 ]
 
 { #category : #'visiting - MD' }
-LeaXMIVisitor >> visitOwnedAttribute: anXMLElement [ 
+PrxmXMIVisitor >> visitOwnedAttribute: anXMLElement [ 
 
 	| parentEntity modelAttribute |
 	parentEntity := context top.
@@ -113,7 +113,7 @@ LeaXMIVisitor >> visitOwnedAttribute: anXMLElement [
 ]
 
 { #category : #'visiting - MD' }
-LeaXMIVisitor >> visitOwnedOperation: anXMLElement [
+PrxmXMIVisitor >> visitOwnedOperation: anXMLElement [
 
 	| parentEntity modelMethod |
 	parentEntity := context top.
@@ -126,7 +126,7 @@ LeaXMIVisitor >> visitOwnedOperation: anXMLElement [
 ]
 
 { #category : #'visiting - MD' }
-LeaXMIVisitor >> visitOwnedPackage: anXMLElement [ 
+PrxmXMIVisitor >> visitOwnedPackage: anXMLElement [ 
 
 	| package |
 	package := model newPackageNamed: (anXMLElement attributeAt: #nameOfPackage).
@@ -138,26 +138,26 @@ LeaXMIVisitor >> visitOwnedPackage: anXMLElement [
 ]
 
 { #category : #'visiting - MD' }
-LeaXMIVisitor >> visitOwnedParam: aXMLElement [ 
+PrxmXMIVisitor >> visitOwnedParam: aXMLElement [ 
 	
 ]
 
 { #category : #'visiting - MD' }
-LeaXMIVisitor >> visitOwnedRet: aXMLElement [ 
+PrxmXMIVisitor >> visitOwnedRet: aXMLElement [ 
 
 ]
 
 { #category : #'visiting - MD' }
-LeaXMIVisitor >> visitReturnType: aXMLElement [ 
+PrxmXMIVisitor >> visitReturnType: aXMLElement [ 
 
 ]
 
 { #category : #'visiting - XML' }
-LeaXMIVisitor >> visitStringNode: anXMLString [
+PrxmXMIVisitor >> visitStringNode: anXMLString [
 ]
 
 { #category : #'visiting - MD' }
-LeaXMIVisitor >> visitType_Symbol: anXMLElement [ 
+PrxmXMIVisitor >> visitType_Symbol: anXMLElement [ 
 
 	| parentEntity |
 
@@ -173,7 +173,7 @@ LeaXMIVisitor >> visitType_Symbol: anXMLElement [
 ]
 
 { #category : #'visiting - MD' }
-LeaXMIVisitor >> visitType_simple: anXMLElement [
+PrxmXMIVisitor >> visitType_simple: anXMLElement [
 
 	| parentEntity |
 	parentEntity := context top.

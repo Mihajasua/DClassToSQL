@@ -1,14 +1,14 @@
 Class {
-	#name : #LeaXMIImporter,
+	#name : #PrxmXMIImporter,
 	#superclass : #Object,
 	#instVars : [
 		'model'
 	],
-	#category : #'SQL-Lea'
+	#category : #'Praxem-Import'
 }
 
 { #category : #api }
-LeaXMIImporter >> import: filename [
+PrxmXMIImporter >> import: filename [
 
 	filename asFileReference readStreamDo: [ :st |
 		^self importString: st contents
@@ -16,32 +16,32 @@ LeaXMIImporter >> import: filename [
 ]
 
 { #category : #api }
-LeaXMIImporter >> importString: aString [
+PrxmXMIImporter >> importString: aString [
 	|visitor |
 	model := FamixPraxemModel  new.
 	
 		
-	model newClassNamed: 'Date'.
-	model newClassNamed: 'Texte'.
-	model newClassNamed: 'Boolean'.
-	model newClassNamed: 'Numerique'.
+	model newPrimitiveClassNamed: 'Date'.
+	model newPrimitiveClassNamed: 'Texte'.
+	model newPrimitiveClassNamed: 'Boolean'.
+	model newPrimitiveClassNamed: 'Numerique'.
 	
 
-	visitor := LeaXMIVisitor new.
+	visitor := PrxmXMIVisitor new.
 			
 	visitor model: model.
 	
 	(XMLDOMParser parse: aString)
 		acceptNodeVisitor: visitor.	
 	
-	(LeaPraxemResolver new) checkAttributeType: model.
+	(PrxmResolver new) checkAttributeType: model.
 	
 	^visitor model
 
 ]
 
 { #category : #initialization }
-LeaXMIImporter >> initialize [
+PrxmXMIImporter >> initialize [
 
 	super initialize.
 

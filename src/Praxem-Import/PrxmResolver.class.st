@@ -1,11 +1,11 @@
 Class {
-	#name : #LeaPraxemResolver,
+	#name : #PrxmResolver,
 	#superclass : #Object,
-	#category : #'SQL-Lea'
+	#category : #'Praxem-Import'
 }
 
 { #category : #'as yet unclassified' }
-LeaPraxemResolver >> checkAttributeType: aModel [
+PrxmResolver >> checkAttributeType: aModel [
 	
 	| praxemClass |
 	(aModel allWithType: FamixPraxemAttribute) do: 
