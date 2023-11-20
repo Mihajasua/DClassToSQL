@@ -1,14 +1,14 @@
 Class {
-	#name : #LeaDCtoModelePhysique,
+	#name : #PrxmToFamixSQL,
 	#superclass : #Object,
 	#instVars : [
 		'builder'
 	],
-	#category : #'SQL-Lea'
+	#category : #'Praxem-To-SQL'
 }
 
 { #category : #'as yet unclassified' }
-LeaDCtoModelePhysique >> classToTable: aClass [
+PrxmToFamixSQL >> classToTable: aClass [
 
 	| aTable |
 	aTable := builder createTable: aClass name.
@@ -32,7 +32,7 @@ LeaDCtoModelePhysique >> classToTable: aClass [
 ]
 
 { #category : #'as yet unclassified' }
-LeaDCtoModelePhysique >> createForeignKeys: aTable from: aClass [
+PrxmToFamixSQL >> createForeignKeys: aTable from: aClass [
 
 	aClass attributes do: [ :attRef |
 		attRef declaredType ifNotNil: [
@@ -46,21 +46,21 @@ LeaDCtoModelePhysique >> createForeignKeys: aTable from: aClass [
 ]
 
 { #category : #'as yet unclassified' }
-LeaDCtoModelePhysique >> generatePrimaryKeyID: tableName [
+PrxmToFamixSQL >> generatePrimaryKeyID: tableName [
 
 	^ tableName,'ID'
 ]
 
 { #category : #initialization }
-LeaDCtoModelePhysique >> initialize [
+PrxmToFamixSQL >> initialize [
 
 	super initialize.
 	
-	builder := LeaBuildDatabase new
+	builder := PrxmBuildFamixSQLEntities new
 ]
 
 { #category : #'as yet unclassified' }
-LeaDCtoModelePhysique >> sqlType: type [
+PrxmToFamixSQL >> sqlType: type [
 
 	type 
 		ifNil: [^'unknown' ]

@@ -1,11 +1,11 @@
 Class {
-	#name : #LeaSQLGenerator,
+	#name : #PrxmSQLExporter,
 	#superclass : #Object,
-	#category : #'SQL-Lea'
+	#category : #'Praxem-To-SQL'
 }
 
 { #category : #'as yet unclassified' }
-LeaSQLGenerator >> generateColumn: aColumn on: aStream [
+PrxmSQLExporter >> generateColumn: aColumn on: aStream [
 
 	aStream
 		tab ;
@@ -19,14 +19,14 @@ LeaSQLGenerator >> generateColumn: aColumn on: aStream [
 ]
 
 { #category : #'as yet unclassified' }
-LeaSQLGenerator >> generateTable: aTable [
+PrxmSQLExporter >> generateTable: aTable [
 	^String streamContents: [ :aStream |
 		self generateTable: aTable on: aStream
 	]
 ]
 
 { #category : #'as yet unclassified' }
-LeaSQLGenerator >> generateTable: aTable on: aStream [
+PrxmSQLExporter >> generateTable: aTable on: aStream [
 
 	aStream
 		<< 'CREATE TABLE ' ;
@@ -51,7 +51,7 @@ LeaSQLGenerator >> generateTable: aTable on: aStream [
 ]
 
 { #category : #'as yet unclassified' }
-LeaSQLGenerator >> generateType: aType on: aStream [
+PrxmSQLExporter >> generateType: aType on: aStream [
 
 
 	aStream

@@ -1,14 +1,14 @@
 Class {
-	#name : #LeaBuildDatabase,
+	#name : #PrxmBuildFamixSQLEntities,
 	#superclass : #Object,
 	#instVars : [
 		'typeDict'
 	],
-	#category : #'SQL-Lea'
+	#category : #'Praxem-To-SQL'
 }
 
 { #category : #running }
-LeaBuildDatabase >> createColum: columnName type: typeName [
+PrxmBuildFamixSQLEntities >> createColum: columnName type: typeName [
 
 	| column |
 	column := FamixSQLColumn new
@@ -21,7 +21,7 @@ LeaBuildDatabase >> createColum: columnName type: typeName [
 ]
 
 { #category : #running }
-LeaBuildDatabase >> createTable: nom [
+PrxmBuildFamixSQLEntities >> createTable: nom [
 
 	^FamixSQLTable new
 		name: nom ;
@@ -29,7 +29,7 @@ LeaBuildDatabase >> createTable: nom [
 ]
 
 { #category : #running }
-LeaBuildDatabase >> createTablePersone [
+PrxmBuildFamixSQLEntities >> createTablePersone [
 
 	| table |
 	table := self createTable: 'Person'.
@@ -43,7 +43,7 @@ LeaBuildDatabase >> createTablePersone [
 ]
 
 { #category : #running }
-LeaBuildDatabase >> createTableStudent [
+PrxmBuildFamixSQLEntities >> createTableStudent [
 
 	| table |
 	table := self createTable: 'Student'.
@@ -57,14 +57,14 @@ LeaBuildDatabase >> createTableStudent [
 ]
 
 { #category : #running }
-LeaBuildDatabase >> createType: typeName [
+PrxmBuildFamixSQLEntities >> createType: typeName [
 	^FamixSQLType new
 		name: typeName;
 		yourself.
 ]
 
 { #category : #running }
-LeaBuildDatabase >> createTypeReferenceFrom: referencer to: type [
+PrxmBuildFamixSQLEntities >> createTypeReferenceFrom: referencer to: type [
 	
 	^FamixSQLTypeReference new
 		referencer: referencer ;
@@ -73,7 +73,7 @@ LeaBuildDatabase >> createTypeReferenceFrom: referencer to: type [
 ]
 
 { #category : #running }
-LeaBuildDatabase >> ensureType: typeName [
+PrxmBuildFamixSQLEntities >> ensureType: typeName [
 
 	^typeDict
 		at: typeName
@@ -81,7 +81,7 @@ LeaBuildDatabase >> ensureType: typeName [
 ]
 
 { #category : #running }
-LeaBuildDatabase >> initialize [
+PrxmBuildFamixSQLEntities >> initialize [
 
 	super initialize.
 
