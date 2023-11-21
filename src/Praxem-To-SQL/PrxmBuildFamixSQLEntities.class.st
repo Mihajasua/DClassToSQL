@@ -29,34 +29,6 @@ PrxmBuildFamixSQLEntities >> createTable: nom [
 ]
 
 { #category : #running }
-PrxmBuildFamixSQLEntities >> createTablePersone [
-
-	| table |
-	table := self createTable: 'Person'.
-	table addColumn: (self createColum: 'PersonID' type: 'int').
-	table addColumn: (self createColum: 'LastName' type: 'varchar(255)').
-	table addColumn: (self createColum: 'FirstName' type: 'varchar(255)').
-	table addColumn: (self createColum: 'Address' type: 'varchar(255)').
-	table addColumn: (self createColum: 'City' type: 'varchar(255)').
-
-	^table
-]
-
-{ #category : #running }
-PrxmBuildFamixSQLEntities >> createTableStudent [
-
-	| table |
-	table := self createTable: 'Student'.
-	table addColumn: (self createColum: 'StudentID' type: 'int').
-	table addColumn: (self createColum: 'LastName' type: 'varchar(255)').
-	table addColumn: (self createColum: 'FirstName' type: 'varchar(255)').
-	table addColumn: (self createColum: 'Class' type: 'varchar(255)').
-	table addColumn: (self createColum: 'Speciality' type: 'varchar(255)').
-
-	^table
-]
-
-{ #category : #running }
 PrxmBuildFamixSQLEntities >> createType: typeName [
 	^FamixSQLType new
 		name: typeName;

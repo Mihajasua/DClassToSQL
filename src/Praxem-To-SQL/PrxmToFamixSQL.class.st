@@ -99,9 +99,13 @@ PrxmToFamixSQL >> sqlType: type [
 PrxmToFamixSQL >> visitPraxemAttribute: aPraxemAttribute [
 
 	| aTable column |
+	
 	aTable := context top.
+		
+	column := builder 
+		createColum: aPraxemAttribute name 
+		type: (self visitePraxemAttributeType: aPraxemAttribute declaredType).
 
-	column := builder createColum: aPraxemAttribute name type: nil.
 	model add: column.
 	aTable addColumn: column
 
@@ -111,6 +115,7 @@ PrxmToFamixSQL >> visitPraxemAttribute: aPraxemAttribute [
 PrxmToFamixSQL >> visitPraxemClass: aPraxemClass [
 
 	| aTable |
+	
 	aTable := builder createTable: aPraxemClass name.
 	model add: aTable.
 	context push: aTable.
@@ -125,4 +130,20 @@ PrxmToFamixSQL >> visitPraxemClass: aPraxemClass [
 
 
 	context pop
+]
+
+{ #category : #visiting }
+PrxmToFamixSQL >> visitePraxemAttributeType: aPraxemAttributeType [
+
+	aPraxemAttributeType 
+		ifNil: [^'unknown' ]
+ 		ifNotNil: [ 
+			(aPraxemAttributeType name = 'Numerique') ifTrue: [ ^'int'].
+			(aPraxemAttributeType name = 'Texte') ifTrue: [ ^'varchar(255)'].
+			(aPraxemAttributeType name = 'Boolean') ifTrue: [ ^'boolean'].
+			(aPraxemAttributeType name = 'Date') ifTrue: [ ^'date'].
+			(aPraxemAttributeType attributes) ifNotNil: [ ^aPraxemAttributeType name].
+			 ^ 'unknown'
+		]
+	
 ]
