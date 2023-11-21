@@ -13,6 +13,7 @@ Class {
 PrxmToFamixSQL >> classToTable: aClass [
 
 	| aTable |
+
 	aTable := builder createTable: aClass name.
 
 	aTable addColumn: (builder
@@ -125,7 +126,10 @@ PrxmToFamixSQL >> visitPraxemClass: aPraxemClass [
 		 type: 'int').
 
 	super visitPraxemClass: aPraxemClass.
-
+	
+	aTable addColumn:
+		(builder createColum: 'PRIMARY KEY (' ,(self generatePrimaryKeyID: aPraxemClass name) type: '').
+		
 	self createForeignKeys: aTable from: aPraxemClass.
 
 
