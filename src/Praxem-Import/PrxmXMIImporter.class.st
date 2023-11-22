@@ -21,10 +21,10 @@ PrxmXMIImporter >> importString: aString [
 	model := FamixPraxemModel  new.
 	
 		
-	model newClassNamed: 'Date'.
-	model newClassNamed: 'Texte'.
-	model newClassNamed: 'Boolean'.
-	model newClassNamed: 'Numerique'.
+	model newPrimitiveClassNamed: 'Date'.
+	model newPrimitiveClassNamed: 'Texte'.
+	model newPrimitiveClassNamed: 'Boolean'.
+	model newPrimitiveClassNamed: 'Numerique'.
 	
 
 	visitor := PrxmXMIVisitor  new.

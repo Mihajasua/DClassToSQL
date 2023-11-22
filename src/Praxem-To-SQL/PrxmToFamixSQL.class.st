@@ -128,7 +128,7 @@ PrxmToFamixSQL >> visitPraxemClass: aPraxemClass [
 	super visitPraxemClass: aPraxemClass.
 	
 	aTable addColumn:
-		(builder createColum: 'PRIMARY KEY (' ,(self generatePrimaryKeyID: aPraxemClass name) type: '').
+		(builder createColum: 'PRIMARY KEY (' ,(self generatePrimaryKeyID: aPraxemClass name),')' type: '').
 		
 	self createForeignKeys: aTable from: aPraxemClass.
 
@@ -146,7 +146,8 @@ PrxmToFamixSQL >> visitePraxemAttributeType: aPraxemAttributeType [
 			(aPraxemAttributeType name = 'Texte') ifTrue: [ ^'varchar(255)'].
 			(aPraxemAttributeType name = 'Boolean') ifTrue: [ ^'boolean'].
 			(aPraxemAttributeType name = 'Date') ifTrue: [ ^'date'].
-			(aPraxemAttributeType attributes) ifNotNil: [ ^aPraxemAttributeType name].
+			"(aPraxemAttributeType attributes) ifNotNil: [ ^aPraxemAttributeType name]."
+			(aPraxemAttributeType attributes) ifNotNil: [ ^'int'].
 			 ^ 'unknown'
 		]
 	

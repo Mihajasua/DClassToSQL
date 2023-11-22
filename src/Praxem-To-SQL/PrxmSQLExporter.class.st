@@ -52,8 +52,6 @@ PrxmSQLExporter >> generateTable: aTable on: aStream [
 
 { #category : #'as yet unclassified' }
 PrxmSQLExporter >> generateType: aType on: aStream [
-
-
 	aStream
 		<< aType name
 

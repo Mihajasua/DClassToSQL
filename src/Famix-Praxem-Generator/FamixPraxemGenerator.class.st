@@ -8,7 +8,8 @@ Class {
 		'package',
 		'attributeType',
 		'parameter',
-		'association'
+		'association',
+		'primitiveClass'
 	],
 	#category : #'Famix-Praxem-Generator'
 }
@@ -35,6 +36,7 @@ FamixPraxemGenerator >> defineClasses [
 	super defineClasses.
 
 	class := builder newClassNamed: #Class.
+	primitiveClass := builder newClassNamed: #PrimitiveClass.
 	method := builder newClassNamed: #Method.
 	attribute := builder newClassNamed: #Attribute. 
 	package := builder newClassNamed: #Package.
@@ -50,6 +52,8 @@ FamixPraxemGenerator >> defineHierarchy [
 	
 	class --|> #TPackageable.
 	class --|> #TClass.
+	primitiveClass --|> #TPackageable.
+	primitiveClass --|> #TClass.
 	method --|> #TMethod.
 	attribute --|> #TAttribute.
 	package --|> #TPackage.

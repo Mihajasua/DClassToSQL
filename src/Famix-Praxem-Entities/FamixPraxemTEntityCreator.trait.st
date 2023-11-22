@@ -99,3 +99,17 @@ FamixPraxemTEntityCreator >> newParameterNamed: aName [
 	<generated>
 	^ self add: (FamixPraxemParameter named: aName)
 ]
+
+{ #category : #'entity creation' }
+FamixPraxemTEntityCreator >> newPrimitiveClass [
+
+	<generated>
+	^ self add: FamixPraxemPrimitiveClass new
+]
+
+{ #category : #'entity creation' }
+FamixPraxemTEntityCreator >> newPrimitiveClassNamed: aName [
+
+	<generated>
+	^ self add: (FamixPraxemPrimitiveClass named: aName)
+]
