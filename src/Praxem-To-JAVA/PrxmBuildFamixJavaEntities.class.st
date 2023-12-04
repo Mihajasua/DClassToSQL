@@ -2,7 +2,8 @@ Class {
 	#name : #PrxmBuildFamixJavaEntities,
 	#superclass : #Object,
 	#instVars : [
-		'typeDict'
+		'typeDict',
+		'model'
 	],
 	#category : #'Praxem-To-JAVA'
 }
@@ -12,6 +13,7 @@ PrxmBuildFamixJavaEntities >> createAttributeDeclaration: attributeName type: ty
 
 	| attribute |
 	attribute := FamixJavaAttribute new
+		mooseModel: model ;
 		name: attributeName ;
 		yourself.
 
@@ -24,14 +26,16 @@ PrxmBuildFamixJavaEntities >> createAttributeDeclaration: attributeName type: ty
 PrxmBuildFamixJavaEntities >> createClass: className [
 
 	^FamixJavaClass new
+		mooseModel: model ;
 		name: className;
 		yourself.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'private-entity-creation' }
 PrxmBuildFamixJavaEntities >> createMethod: methodName type: methodType [
 
 	^FamixJavaMethod new
+		mooseModel: model ;
 		name: methodName ;
 		yourself.
 
@@ -41,6 +45,7 @@ PrxmBuildFamixJavaEntities >> createMethod: methodName type: methodType [
 PrxmBuildFamixJavaEntities >> createTypeReferenceFrom: referencer to: type [
 	
 	^FamixJavaType new
+		mooseModel: model ;
 		referencer: referencer ;
 		type: type ;
 		yourself
@@ -60,4 +65,16 @@ PrxmBuildFamixJavaEntities >> initialize [
 	super initialize.
 
 	typeDict := Dictionary new
+]
+
+{ #category : #accessing }
+PrxmBuildFamixJavaEntities >> model [
+
+	^ model
+]
+
+{ #category : #accessing }
+PrxmBuildFamixJavaEntities >> model: anObject [
+
+	model := anObject
 ]

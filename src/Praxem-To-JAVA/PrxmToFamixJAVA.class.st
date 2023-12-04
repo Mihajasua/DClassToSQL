@@ -1,5 +1,5 @@
 Class {
-	#name : #PrxmToFamixJAVA,
+	#name : #PrxmToFamixJava,
 	#superclass : #PrxmAbstractVisitorToJava,
 	#instVars : [
 		'builder',
@@ -10,30 +10,31 @@ Class {
 }
 
 { #category : #initialization }
-PrxmToFamixJAVA >> initialize [
+PrxmToFamixJava >> initialize [
 
 	super initialize.
 
 	model := FamixJavaModel new.
 	builder := PrxmBuildFamixJavaEntities new.
+	builder model: model.
 	
 	context := Stack new
 ]
 
 { #category : #accessing }
-PrxmToFamixJAVA >> model [
+PrxmToFamixJava >> model [
 
 	^ model
 ]
 
 { #category : #accessing }
-PrxmToFamixJAVA >> model: anObject [
+PrxmToFamixJava >> model: anObject [
 
 	model := anObject
 ]
 
 { #category : #'as yet unclassified' }
-PrxmToFamixJAVA >> sqlType: type [
+PrxmToFamixJava >> sqlType: type [
 
 	type 
 		ifNil: [^'unknown' ]
@@ -53,32 +54,32 @@ PrxmToFamixJAVA >> sqlType: type [
 ]
 
 { #category : #visiting }
-PrxmToFamixJAVA >> visitPraxemAttribute: aPraxemAttribute [
+PrxmToFamixJava >> visitPraxemAttribute: aPraxemAttribute [
 
 
 
 ]
 
 { #category : #visiting }
-PrxmToFamixJAVA >> visitPraxemClass: aPraxemClass [
-
-
+PrxmToFamixJava >> visitPraxemClass: aPraxemClass [
 
 	| aJavaClass |
 
 	aJavaClass := builder createClass: aPraxemClass name.
-	model add: aJavaClass.
 	context push: aJavaClass.
-		
+
+	super visitPraxemClass: aPraxemClass.
+
+	context pop
 ]
 
 { #category : #visiting }
-PrxmToFamixJAVA >> visitPraxemMethod: aPraxemMethod [
+PrxmToFamixJava >> visitPraxemMethod: aPraxemMethod [
 
 
 ]
 
 { #category : #visiting }
-PrxmToFamixJAVA >> visitePraxemAttributeType: aPraxemAttributeType [
+PrxmToFamixJava >> visitePraxemAttributeType: aPraxemAttributeType [
 
 ]

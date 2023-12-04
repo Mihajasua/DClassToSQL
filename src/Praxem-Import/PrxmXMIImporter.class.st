@@ -34,7 +34,7 @@ PrxmXMIImporter >> importString: aString [
 	(XMLDOMParser parse: aString)
 		acceptNodeVisitor: visitor.	
 	
-	(PrxmResolver  new) checkAttributeType: model.
+	(PrxmResolver  new) resolveNamedTypes: model.
 	
 	^visitor model
 
