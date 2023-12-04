@@ -115,8 +115,9 @@ PrxmToFamixSQL >> visitPraxemAttribute: aPraxemAttribute [
 { #category : #visiting }
 PrxmToFamixSQL >> visitPraxemClass: aPraxemClass [
 
+
 	| aTable |
-	
+
 	aTable := builder createTable: aPraxemClass name.
 	model add: aTable.
 	context push: aTable.
@@ -134,6 +135,12 @@ PrxmToFamixSQL >> visitPraxemClass: aPraxemClass [
 
 
 	context pop
+]
+
+{ #category : #visiting }
+PrxmToFamixSQL >> visitPraxemMethod: aPraxemMethod [
+
+
 ]
 
 { #category : #visiting }
