@@ -6,10 +6,12 @@ Class {
 		'method',
 		'attribute',
 		'package',
-		'attributeType',
 		'parameter',
 		'association',
-		'primitiveClass'
+		'primitiveClass',
+		'attributeType',
+		'returnValue',
+		'type'
 	],
 	#category : #'Famix-Praxem-Generator'
 }
@@ -33,23 +35,26 @@ FamixPraxemGenerator class >> submetamodels [
 
 { #category : #definition }
 FamixPraxemGenerator >> defineClasses [
+
 	super defineClasses.
 
 	class := builder newClassNamed: #Class.
 	primitiveClass := builder newClassNamed: #PrimitiveClass.
 	method := builder newClassNamed: #Method.
-	attribute := builder newClassNamed: #Attribute. 
+	attribute := builder newClassNamed: #Attribute.
 	package := builder newClassNamed: #Package.
 	attributeType := builder newClassNamed: #AttributeType.
-	parameter:= builder newClassNamed: #Parameter.
+	parameter := builder newClassNamed: #Parameter.
 	association := builder newClassNamed: #Association.
+	returnValue := builder newClassNamed: #ReturnValue.
+	type := builder newClassNamed: #TType
 ]
 
 { #category : #definition }
 FamixPraxemGenerator >> defineHierarchy [
 
 	super defineHierarchy.
-	
+
 	class --|> #TPackageable.
 	class --|> #TClass.
 	primitiveClass --|> #TPackageable.
@@ -60,8 +65,14 @@ FamixPraxemGenerator >> defineHierarchy [
 	attributeType --|> #TTypedEntity.
 	parameter --|> #TParameter.
 	association --|> #TAssociation.
+	returnValue --|> #TNamedEntity.
+	returnValue --|> #TTypedEntity.
+	type --|> #TType
+]
+
+{ #category : #definition }
+FamixPraxemGenerator >> defineRelations [
+
 	
-	
-	
-	
+	(method property: #returnValue) - (returnValue property: #method)
 ]

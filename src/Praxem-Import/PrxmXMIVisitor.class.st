@@ -133,7 +133,6 @@ PrxmXMIVisitor >> visitOwnedAttribute: anXMLElement [
 PrxmXMIVisitor >> visitOwnedOperation: anXMLElement [
 
 	| parentEntity modelMethod |
-
 	parentEntity := context top.
 
 	modelMethod := model newMethodNamed:
@@ -172,8 +171,16 @@ PrxmXMIVisitor >> visitOwnedParam: aXMLElement [
 { #category : #'visiting - MD' }
 PrxmXMIVisitor >> visitOwnedRet: anXMLElement [
 
-	self visitChildrenNodes: anXMLElement.
+	| modelReturnValue |
+	self halt.
+	modelReturnValue := model newReturnValueNamed:  
+		                    (anXMLElement attributeAt: #nameOfRet).
 
+	context top returnValue: modelReturnValue.
+
+	self visitChildrenNodes: anXMLElement
+	
+	 context pop.
 ]
 
 { #category : #'visiting - MD' }

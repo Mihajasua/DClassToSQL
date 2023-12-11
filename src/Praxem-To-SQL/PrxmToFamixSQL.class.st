@@ -115,22 +115,23 @@ PrxmToFamixSQL >> visitPraxemAttribute: aPraxemAttribute [
 { #category : #visiting }
 PrxmToFamixSQL >> visitPraxemClass: aPraxemClass [
 
-
 	| aTable |
-
 	aTable := builder createTable: aPraxemClass name.
 	model add: aTable.
 	context push: aTable.
-	
+
 	aTable addColumn: (builder
-		 createColum: (self generatePrimaryKeyID: aPraxemClass name)
-		 type: 'int').
+			 createColum: (self generatePrimaryKeyID: aPraxemClass name)
+			 type: 'int').
 
 	super visitPraxemClass: aPraxemClass.
-	
-	aTable addColumn:
-		(builder createColum: 'PRIMARY KEY (' ,(self generatePrimaryKeyID: aPraxemClass name),')' type: '').
-		
+
+	aTable addColumn: (builder
+			 createColum:
+			 'PRIMARY KEY (' , (self generatePrimaryKeyID: aPraxemClass name)
+			 , ')'
+			 type: '').
+
 	self createForeignKeys: aTable from: aPraxemClass.
 
 

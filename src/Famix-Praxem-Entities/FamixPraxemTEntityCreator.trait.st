@@ -113,3 +113,31 @@ FamixPraxemTEntityCreator >> newPrimitiveClassNamed: aName [
 	<generated>
 	^ self add: (FamixPraxemPrimitiveClass named: aName)
 ]
+
+{ #category : #'entity creation' }
+FamixPraxemTEntityCreator >> newReturnValue [
+
+	<generated>
+	^ self add: FamixPraxemReturnValue new
+]
+
+{ #category : #'entity creation' }
+FamixPraxemTEntityCreator >> newReturnValueNamed: aName [
+
+	<generated>
+	^ self add: (FamixPraxemReturnValue named: aName)
+]
+
+{ #category : #'entity creation' }
+FamixPraxemTEntityCreator >> newTType [
+
+	<generated>
+	^ self add: FamixPraxemTType new
+]
+
+{ #category : #'entity creation' }
+FamixPraxemTEntityCreator >> newTTypeNamed: aName [
+
+	<generated>
+	^ self add: (FamixPraxemTType named: aName)
+]
